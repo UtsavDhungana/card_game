@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:silk_innovation_utsav/features/home/presentation/cubit/card_cubit.dart';
 
 import 'card_back_widget.dart';
@@ -12,10 +11,21 @@ import 'card_front_widget.dart';
 class CardWidget extends StatefulWidget {
   final int cardNumber;
   final bool isMatched;
+  final int totalClick;
+  final int? selectedCard;
+  final void Function() increaseClickCallback;
+  final int Function() getClickCallback;
+  final void Function(int) setClickCount;
+
   const CardWidget({
     super.key,
     required this.cardNumber,
+    required this.totalClick,
     required this.isMatched,
+    required this.selectedCard,
+    required this.increaseClickCallback,
+    required this.getClickCallback,
+    required this.setClickCount,
   });
 
   @override
@@ -47,21 +57,24 @@ class _CardWidgetState extends State<CardWidget>
 
   void _flipCard() {
     bool isFlippingBack = _controller.isCompleted;
+    BlocProvider.of<CardCubit>(context).onCardSelect(
+      widget.cardNumber,
+      isFlippingBack,
+    );
     if (_controller.isDismissed) {
       _controller.forward();
     } else if (_controller.isCompleted) {
       _controller.reverse();
     }
-    BlocProvider.of<CardCubit>(context).onCardSelect(
-      widget.cardNumber,
-      isFlippingBack,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<CardCubit, CardState>(
       listener: (context, state) {
+        if (widget.getClickCallback() == 3) {
+          widget.setClickCount(1);
+        }
         state.mapOrNull(
           loaded: (value) {
             if (value.selectedCard == null &&
@@ -73,7 +86,15 @@ class _CardWidgetState extends State<CardWidget>
         );
       },
       child: GestureDetector(
-        onTap: widget.isMatched ? () {} : _flipCard,
+        onTap: () {
+          if (widget.getClickCallback() > 2) {
+            return;
+          }
+          if (!widget.isMatched) {
+            widget.increaseClickCallback();
+            _flipCard();
+          }
+        },
         child: AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {

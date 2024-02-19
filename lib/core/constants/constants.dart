@@ -40,6 +40,7 @@ class StringConstant {
   static const purchasedText = "Purchased";
   static const moreText = "More";
   static const homeText = "Home";
+  static const welcomeText = "Welcome to Memory Game.";
 
   //LOGIN SCREEN
   static const logInText = "Log in";
@@ -62,4 +63,5 @@ class StringConstant {
   //GAME COMPLETED DIALOG
   static const completedText = "Completed";
   static const gameCompletedText = 'You have successfully completed the game.';
+  static const okText = 'OK';
 }

@@ -13,21 +13,21 @@ class LogoutDialogWidget extends StatelessWidget {
     return AlertDialog(
       title: Text(
         StringConstant.logoutText,
-        style: TextStyle(
-          fontSize: 17.sp,
-        ),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
-      content: const Text(
+      content: Text(
         StringConstant.logoutConfirmationText,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.pop(context, true);
-            },
-            child: const Text(
-              StringConstant.yesText,
-            )),
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+          child: const Text(
+            StringConstant.yesText,
+          ),
+        ),
         TextButton(
           onPressed: () {
             Navigator.pop(context, false);

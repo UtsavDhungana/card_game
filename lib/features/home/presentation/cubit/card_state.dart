@@ -8,6 +8,7 @@ class CardState with _$CardState {
     required final List<int> totalCard,
     required final int? selectedCard,
     required final int totalAttempt,
+    required final int totalClick,
     required final List<int> matchedCard,
     required final bool isCompleted,
   }) = _Loaded;

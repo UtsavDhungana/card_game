@@ -20,8 +20,13 @@ mixin _$CardState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<int> totalCard, int? selectedCard,
-            int totalAttempt, List<int> matchedCard, bool isCompleted)
+    required TResult Function(
+            List<int> totalCard,
+            int? selectedCard,
+            int totalAttempt,
+            int totalClick,
+            List<int> matchedCard,
+            bool isCompleted)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +35,7 @@ mixin _$CardState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +44,7 @@ mixin _$CardState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
     required TResult orElse(),
   }) =>
@@ -124,8 +129,13 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<int> totalCard, int? selectedCard,
-            int totalAttempt, List<int> matchedCard, bool isCompleted)
+    required TResult Function(
+            List<int> totalCard,
+            int? selectedCard,
+            int totalAttempt,
+            int totalClick,
+            List<int> matchedCard,
+            bool isCompleted)
         loaded,
   }) {
     return initial();
@@ -137,7 +147,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
   }) {
     return initial?.call();
@@ -149,7 +159,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
     required TResult orElse(),
   }) {
@@ -237,8 +247,13 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<int> totalCard, int? selectedCard,
-            int totalAttempt, List<int> matchedCard, bool isCompleted)
+    required TResult Function(
+            List<int> totalCard,
+            int? selectedCard,
+            int totalAttempt,
+            int totalClick,
+            List<int> matchedCard,
+            bool isCompleted)
         loaded,
   }) {
     return loading();
@@ -250,7 +265,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
   }) {
     return loading?.call();
@@ -262,7 +277,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
     required TResult orElse(),
   }) {
@@ -320,6 +335,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
       {List<int> totalCard,
       int? selectedCard,
       int totalAttempt,
+      int totalClick,
       List<int> matchedCard,
       bool isCompleted});
 }
@@ -337,6 +353,7 @@ class __$$_LoadedCopyWithImpl<$Res>
     Object? totalCard = null,
     Object? selectedCard = freezed,
     Object? totalAttempt = null,
+    Object? totalClick = null,
     Object? matchedCard = null,
     Object? isCompleted = null,
   }) {
@@ -352,6 +369,10 @@ class __$$_LoadedCopyWithImpl<$Res>
       totalAttempt: null == totalAttempt
           ? _value.totalAttempt
           : totalAttempt // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalClick: null == totalClick
+          ? _value.totalClick
+          : totalClick // ignore: cast_nullable_to_non_nullable
               as int,
       matchedCard: null == matchedCard
           ? _value._matchedCard
@@ -372,6 +393,7 @@ class _$_Loaded implements _Loaded {
       {required final List<int> totalCard,
       required this.selectedCard,
       required this.totalAttempt,
+      required this.totalClick,
       required final List<int> matchedCard,
       required this.isCompleted})
       : _totalCard = totalCard,
@@ -389,6 +411,8 @@ class _$_Loaded implements _Loaded {
   final int? selectedCard;
   @override
   final int totalAttempt;
+  @override
+  final int totalClick;
   final List<int> _matchedCard;
   @override
   List<int> get matchedCard {
@@ -402,7 +426,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'CardState.loaded(totalCard: $totalCard, selectedCard: $selectedCard, totalAttempt: $totalAttempt, matchedCard: $matchedCard, isCompleted: $isCompleted)';
+    return 'CardState.loaded(totalCard: $totalCard, selectedCard: $selectedCard, totalAttempt: $totalAttempt, totalClick: $totalClick, matchedCard: $matchedCard, isCompleted: $isCompleted)';
   }
 
   @override
@@ -416,6 +440,8 @@ class _$_Loaded implements _Loaded {
                 other.selectedCard == selectedCard) &&
             (identical(other.totalAttempt, totalAttempt) ||
                 other.totalAttempt == totalAttempt) &&
+            (identical(other.totalClick, totalClick) ||
+                other.totalClick == totalClick) &&
             const DeepCollectionEquality()
                 .equals(other._matchedCard, _matchedCard) &&
             (identical(other.isCompleted, isCompleted) ||
@@ -428,6 +454,7 @@ class _$_Loaded implements _Loaded {
       const DeepCollectionEquality().hash(_totalCard),
       selectedCard,
       totalAttempt,
+      totalClick,
       const DeepCollectionEquality().hash(_matchedCard),
       isCompleted);
 
@@ -442,12 +469,17 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<int> totalCard, int? selectedCard,
-            int totalAttempt, List<int> matchedCard, bool isCompleted)
+    required TResult Function(
+            List<int> totalCard,
+            int? selectedCard,
+            int totalAttempt,
+            int totalClick,
+            List<int> matchedCard,
+            bool isCompleted)
         loaded,
   }) {
-    return loaded(
-        totalCard, selectedCard, totalAttempt, matchedCard, isCompleted);
+    return loaded(totalCard, selectedCard, totalAttempt, totalClick,
+        matchedCard, isCompleted);
   }
 
   @override
@@ -456,11 +488,11 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
   }) {
-    return loaded?.call(
-        totalCard, selectedCard, totalAttempt, matchedCard, isCompleted);
+    return loaded?.call(totalCard, selectedCard, totalAttempt, totalClick,
+        matchedCard, isCompleted);
   }
 
   @override
@@ -469,13 +501,13 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<int> totalCard, int? selectedCard, int totalAttempt,
-            List<int> matchedCard, bool isCompleted)?
+            int totalClick, List<int> matchedCard, bool isCompleted)?
         loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(
-          totalCard, selectedCard, totalAttempt, matchedCard, isCompleted);
+      return loaded(totalCard, selectedCard, totalAttempt, totalClick,
+          matchedCard, isCompleted);
     }
     return orElse();
   }
@@ -520,12 +552,14 @@ abstract class _Loaded implements CardState {
       {required final List<int> totalCard,
       required final int? selectedCard,
       required final int totalAttempt,
+      required final int totalClick,
       required final List<int> matchedCard,
       required final bool isCompleted}) = _$_Loaded;
 
   List<int> get totalCard;
   int? get selectedCard;
   int get totalAttempt;
+  int get totalClick;
   List<int> get matchedCard;
   bool get isCompleted;
   @JsonKey(ignore: true)

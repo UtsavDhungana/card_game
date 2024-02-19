@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
 
 class GameCompletedDialogWidget extends StatelessWidget {
+  final int totalAttempt;
   const GameCompletedDialogWidget({
     Key? key,
+    required this.totalAttempt,
   }) : super(key: key);
 
   @override
@@ -13,25 +15,21 @@ class GameCompletedDialogWidget extends StatelessWidget {
     return AlertDialog(
       title: Text(
         StringConstant.completedText,
-        style: Theme.of(context).textTheme.labelLarge,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Colors.green,
+            ),
       ),
-      content: const Text(
-        StringConstant.gameCompletedText,
+      content: Text(
+        "${StringConstant.gameCompletedText}\n\nTotal Attempts: $totalAttempt",
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.pop(context, true);
-            },
-            child: const Text(
-              StringConstant.yesText,
-            )),
-        TextButton(
           onPressed: () {
-            Navigator.pop(context, false);
+            Navigator.pop(context, true);
           },
           child: const Text(
-            StringConstant.noText,
+            StringConstant.okText,
           ),
         ),
       ],

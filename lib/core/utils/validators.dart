@@ -13,9 +13,7 @@ class Validators {
       if (value!.trim().isEmpty) {
         return ErrorMessage.passwordEmptyErrorText;
       }
-      // else if (value.length < 8) {
-      //   return StringConstants.passwordLengthErrorText;
-      // }
+
       return null;
     };
   }

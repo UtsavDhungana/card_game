@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pinput/pinput.dart';
 import 'package:silk_innovation_utsav/features/login/presentation/widgets/password_pin_widget.dart';
 
 import '../../../../core/constants/configs.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/utils/validators.dart';
-import '../../../../core/widgets/k_password_widget.dart';
 import '../../../../core/widgets/k_textfield.dart';
 import '../widgets/login_button_widget.dart';
 
@@ -33,13 +29,15 @@ class LoginScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 77.0.h,
+                  top: UiConfig.kHeight * 0.12,
                   bottom: 70.0.h,
                 ),
                 child: Center(
                   child: Text(
                     AppConfig.appName,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                          color: Colors.white,
+                        ),
                   ),
                 ),
               ),
